@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { Item } = require('./schemas.js');
-const db = require('./db');
+// const db = require('./db');
 
 module.exports.getAllSellerItemsExceptCurrentItem = (idOfItem) => (
   Item.find({ itemId: idOfItem })
@@ -16,6 +16,7 @@ module.exports.getAllSellerItemsExceptCurrentItem = (idOfItem) => (
       return filteredSellerItems;
     })
 );
+
 
 module.exports.addManyItems = (arrayOfItems) => (
   Item.insertMany(arrayOfItems)

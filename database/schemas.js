@@ -15,4 +15,9 @@ const itemSchema = new mongoose.Schema({
   sellerReviewCount: Number,
 });
 
-module.exports.Item = mongoose.model('Item', itemSchema);
+// @dev code changes
+// module.exports.Item = mongoose.model('Item', itemSchema);
+
+const Item = mongoose.model('Item', itemSchema);
+
+module.exports = Item;
