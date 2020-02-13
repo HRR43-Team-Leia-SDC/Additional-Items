@@ -7,3 +7,13 @@ Server start script: npm start
 Build script: npm run build
 
 Database seeding script: npm run seed
+
+CRUD API routes
+
+GET items for a seller '/additional'
+
+DELETE an item '/additional/:id'
+
+PUT update an item '/additional/:id'
+
+POST a new item '/additional'

@@ -20,3 +20,11 @@ module.exports.getAllSellerItemsExceptCurrentItem = (idOfItem) => (
 module.exports.addManyItems = (arrayOfItems) => (
   Item.insertMany(arrayOfItems)
 );
+
+// module.exports.postItem = (newItem) => (
+//   newItem = new Item({
+
+//   })
+
+
+// );

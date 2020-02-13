@@ -1,6 +1,7 @@
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const db = require('../database');
+const { Item } = require('../database/schemas.js');
 
 const app = express();
 
@@ -32,6 +33,58 @@ app.get('/additional/:id', (req, res) => {
       });
   }
 });
+
+app.post('/additional', (req, res) => {
+  const newItem = new Item({
+    sellerName: req.body.sellerName,
+    sellerCountry: req.body.sellerCountry,
+    sellerTotalSales: req.body.sellerTotalSales,
+    sellerJoinDate: req.body.sellerJoinDate,
+    sellerPicture: req.body.sellerPicture,
+    sellerStarRating: req.body.sellerStarRating,
+    sellerReviewCount: req.body.sellerReviewCount,
+    itemId: req.body.itemId,
+    itemName: req.body.itemName,
+    itemPrice: req.body.itemPrice,
+    itemPicture: req.body.itemPicture,
+    itemFreeShipping: req.body.itemFreeShipping,
+  });
+
+  newItem.save()
+    .then(() => res.json('Item saved'))
+    .catch((err) => res.status(400).json({ Error: err }));
+});
+
+app.put('/additional/:id', (req, res) => {
+  const { id } = req.params;
+
+  const item = {
+    sellerName: req.body.sellerName,
+    sellerCountry: req.body.sellerCountry,
+    sellerTotalSales: req.body.sellerTotalSales,
+    sellerJoinDate: req.body.sellerJoinDate,
+    sellerPicture: req.body.sellerPicture,
+    sellerStarRating: req.body.sellerStarRating,
+    sellerReviewCount: req.body.sellerReviewCount,
+    itemId: req.body.itemId,
+    itemName: req.body.itemName,
+    itemPrice: req.body.itemPrice,
+    itemPicture: req.body.itemPicture,
+    itemFreeShipping: req.body.itemFreeShipping,
+  };
+
+  Item.findByIdAndUpdate(id, item)
+    .then(() => res.json('Item updated!'))
+    .catch((err) => res.status(400).json({ Error: err }));
+});
+
+app.delete('/additional/:id', (req, res) => {
+  const { id } = req.params;
+  Item.findByIdAndDelete(id)
+    .then(() => res.json('Item deleted'))
+    .catch((err) => res.status(400).json({ Error: err }));
+});
+
 
 const port = process.env.ADDITIONAL_ITEMS_PORT || 3004;
 
