@@ -9,7 +9,11 @@ Build script: npm run build
 Database seeding script: npm run seed
 
 CRUD API
+
 GET '/additional/:id'
+
 POST '/additional'
+
 PUT '/additional/:id'
+
 DELETE '/additional/:id'
