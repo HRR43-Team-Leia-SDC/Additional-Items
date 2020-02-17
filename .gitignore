@@ -6,4 +6,8 @@ package-lock.json
 junit.xml
 public/bundle.js.br
 public/bundle.js.gz
-/database/csv
+database/csv
+database/csv/items.csv
+
+# CSV files
+*.csv

@@ -1,16 +1,13 @@
-// ignore for now
+const { Pool } = require('pg');
 
-// const { Pool } = require('pg');
+// use environment variables https://node-postgres.com/features/connecting
 
-// // use environment variables https://node-postgres.com/features/connecting
-
-// const pool = new Pool({
-//   user: 'dbuser',
-//   host: 'localhost',
-//   database: 'additionalItems',
-//   password: '123',
-//   port: 5000,
-// });
+const pool = new Pool({
+  // user: 'dbuser',
+  host: 'localhost',
+  database: 'additionalItems',
+  port: 5432,
+});
 
 // // open Postgres connection
 // pool.connect((err, client, done) => {
@@ -29,13 +26,12 @@
 //   });
 // });
 
-// // async/await checkout client https://node-postgres.com/features/pooling
+// async/await checkout client https://node-postgres.com/features/pooling
 
-// // (async () => {
-// //   const client = await pool.connect();
-// //   console.log('Postgres connected');
+(async () => {
+  const client = await pool.connect();
+  console.log('Postgres connected');
+})().catch((err) => console.error(err));
 
-// // })().catch(err => console.error(err));
 
-
-// module.exports = pool;
+module.exports = pool;
