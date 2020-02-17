@@ -32,6 +32,7 @@ CREATE DATABASE SDCadditionalItems;
 
 \connect SDCadditionalItems;
 
+// @dev relocated CSV file outside of project
 COPY additionalItems(itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount) FROM '/Users/yerxiong/code/yer-space/HRR43/team-leia/SDC/Additional-Items/database/csv/items.csv' WITH DELIMITER ',' CSV HEADER;
 
 COPY additionalItems(itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount) FROM '/Users/yerxiong/code/yer-space/HRR43/team-leia/SDC/Additional-Items/database/csv/test.csv' WITH DELIMITER ',' CSV HEADER;

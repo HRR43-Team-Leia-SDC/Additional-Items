@@ -47,9 +47,9 @@ CREATE KEYSPACE etsy WITH REPLICATION = {'class': 'SimpleStrategy', 'replication
 
 USE etsy;
 
-COPY additionalItems(itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount) FROM '/Users/yerxiong/code/yer-space/HRR43/team-leia/SDC/Additional-Items/database/csv/items.csv' WITH DELIMITER=',' AND HEADER=TRUE;
+COPY additionalItems(itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount) FROM '/Users/yerxiong/code/yer-space/HRR43/team-leia/SDC/sdcData/items.csv' WITH DELIMITER=',' AND HEADER=TRUE;
 
-
+COPY additionalItems(itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount) FROM '/Users/yerxiong/code/yer-space/HRR43/team-leia/SDC/sdcData/sellers.csv' WITH DELIMITER=',' AND HEADER=TRUE;
 
 
 */
