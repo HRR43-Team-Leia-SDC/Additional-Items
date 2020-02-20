@@ -5,18 +5,13 @@ const fs = require('fs');
 const generateItemData = () => {
   const wsItem = fs.createWriteStream('./database/csv/items.csv');
 
-  // for test data
-  // const wsItem = fs.createWriteStream('./database/csv/test.csv');
-
   // eslint-disable-next-line quotes
   wsItem.write(`itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount\n`);
 
   // 30M total items
   let i = 30000000;
-  // test data with 20 items
-  // let i = 20;
 
-  // freeShipping
+  // shipping options
   const shipping = ['yes', 'eligible', ''];
 
   const generateItem = () => {
