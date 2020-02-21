@@ -5,33 +5,36 @@ const { Pool } = require('pg');
 const pool = new Pool({
   // user: 'dbuser',
   host: 'localhost',
-  database: 'additionalItems',
+  database: 'etsy',
+  // password
   port: 5432,
 });
 
-// // open Postgres connection
-// pool.connect((err, client, done) => {
-//   if (err) throw err;
-//   client.query('SELECT * FROM additionalItems', (err, res) => {
-//     done();
-
-//     if (err) {
-//       console.log(err.stack);
-//     } else {
-//       // res will be JSON data that needs to be parsed
-//       const data = JSON.parse(JSON.stringify(res.rows));
-
-//       // export to CSV file
-//     }
-//   });
-// });
-
-// async/await checkout client https://node-postgres.com/features/pooling
-
-(async () => {
-  const client = await pool.connect();
-  console.log('Postgres connected');
-})().catch((err) => console.error(err));
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
 
 
-module.exports = pool;
+const getSellerItems = (itemId) => pool
+  .connect()
+  .then((client) => client
+    .query('SELECT * FROM additionalitems WHERE sellerid IN (SELECT sellerid FROM additionalitems WHERE itemid=$1)', [itemId])
+    .then((res) => {
+      client.release();
+
+      const filteredSellerItems = res.rows.filter((item) => (
+        item.itemid !== Number(itemId)
+      ));
+      // console.log(filteredSellerItems);
+      return filteredSellerItems;
+    })
+    .catch((err) => {
+      client.release();
+      console.log(err.stack);
+    }));
+
+// getSellerItems(16);
+
+
+module.exports = { getSellerItems };

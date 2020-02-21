@@ -11,7 +11,7 @@
     "build": "webpack",
     "dev:start": "nodemon -i src -i public -i npm_modules -i __tests__ server",
     "start": "node server",
-    "dataGen": "node database/generateData.js"
+    "dataGen": "node database/dataGen/genDataV02.js"
   },
   "repository": {
     "type": "git",

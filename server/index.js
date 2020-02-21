@@ -3,6 +3,9 @@ const expressStaticGzip = require('express-static-gzip');
 const db = require('../database');
 const { Item } = require('../database/schemas.js');
 
+// getSellerItems from postgres
+const { getSellerItems } = require('../database/postgres/index.js');
+
 const app = express();
 
 app.use('/', expressStaticGzip('./public', {
@@ -15,24 +18,36 @@ app.use('/', expressStaticGzip('./public', {
 
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/additional/:id', (req, res) => {
-  console.log(`responding to GET for ${req.params.id}`);
+  const itemId = parseInt(req.params.id, 10);
 
-  // eslint-disable-next-line no-restricted-globals
-  if (isNaN(Number(req.params.id))) {
-    res.status(400).json({ error: 'Invalid input type' });
-  } else {
-    // need to sanitize this at some point
-    db.getAllSellerItemsExceptCurrentItem(req.params.id)
-      .then((allItems) => {
-        res.status(200).json(allItems);
-      })
-      .catch(() => {
-        res.status(404).json({ error: 'That ID does not exist in the database' });
-      });
-  }
+  getSellerItems(itemId)
+    .then((items) => {
+      res.status(200).send(items);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 });
+
+
+// app.get('/additional/:id', (req, res) => {
+//   console.log(`responding to GET for ${req.params.id}`);
+
+//   // eslint-disable-next-line no-restricted-globals
+//   if (isNaN(Number(req.params.id))) {
+//     res.status(400).json({ error: 'Invalid input type' });
+//   } else {
+//     // need to sanitize this at some point
+//     db.getAllSellerItemsExceptCurrentItem(req.params.id)
+//       .then((allItems) => {
+//         res.status(200).json(allItems);
+//       })
+//       .catch(() => {
+//         res.status(404).json({ error: 'That ID does not exist in the database' });
+//       });
+//   }
+// });
 
 app.post('/additional', (req, res) => {
   const newItem = new Item({
