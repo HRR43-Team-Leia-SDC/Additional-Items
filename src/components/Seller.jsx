@@ -190,7 +190,7 @@ Seller.propTypes = {
     sellercountry: PropTypes.string,
     sellertotalsales: PropTypes.number,
     sellerpicture: PropTypes.string,
-    sellerjoindate: PropTypes.string,
+    sellerjoindate: PropTypes.number,
   }),
 };
 

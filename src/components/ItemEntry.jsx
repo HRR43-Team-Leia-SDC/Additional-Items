@@ -69,24 +69,25 @@ const itemEntry = ({ item }) => {
     itemfreeshipping = null,
   } = item;
 
+
   const freeShippingOption = (shipping) => {
     switch (shipping) {
       case 'yes':
         return (
           <ItemPrice>
-            ${itemprice} <FreeShippingBadge>FREE shipping</FreeShippingBadge>
+            ${itemprice.slice(0, -1)}<FreeShippingBadge>FREE shipping</FreeShippingBadge>
           </ItemPrice>
         );
       case 'elgible':
         return (
           <ShippingAndAvailibility>
-            <ItemPrice>${itemprice}</ItemPrice>
+            <ItemPrice>${itemprice.slice(0, -1)}</ItemPrice>
             <FreeShippingElgible>Free shipping eligible</FreeShippingElgible>
           </ShippingAndAvailibility>
         );
       default:
         return (
-          <ItemPrice>${itemprice}</ItemPrice>
+          <ItemPrice>${itemprice.slice(0, -1)}</ItemPrice>
         );
     }
   };
@@ -104,7 +105,7 @@ const itemEntry = ({ item }) => {
 itemEntry.propTypes = {
   item: PropTypes.shape({
     itemname: PropTypes.string,
-    itemprice: PropTypes.number,
+    itemprice: PropTypes.string,
     itempicture: PropTypes.string,
     itemfreeshipping: PropTypes.string,
   }),
