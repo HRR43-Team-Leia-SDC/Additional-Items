@@ -16,18 +16,24 @@ app.use('/', expressStaticGzip('./public', {
   },
 }));
 
+// app.use('/', express.static('./public'));
+
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/additional/:id', (req, res) => {
   const itemId = parseInt(req.params.id, 10);
 
-  getSellerItems(itemId)
-    .then((items) => {
-      res.status(200).send(items);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+  if (isNaN(Number(req.params.id))) {
+    res.status(400).json({ error: 'Invalid input type' });
+  } else {
+    getSellerItems(itemId)
+      .then((items) => {
+        res.status(200).send(items);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  }
 });
 
 

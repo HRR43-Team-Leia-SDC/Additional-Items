@@ -31,7 +31,9 @@ class App extends React.Component {
     const { itemId } = this.props;
     getAdditionalItems(itemId)
       .then((allAdditionalItems) => {
+        // console.log('allitems', allAdditionalItems);
         const sellerInformation = allAdditionalItems[0];
+        // console.log('sellerinfo', sellerInformation);
         sellerInformation.sellerTotalItems = allAdditionalItems.length;
         this.setState({
           sellerInfo: sellerInformation,

@@ -105,16 +105,29 @@ const ViewAllItems = styled.button`
 `;
 
 const Seller = ({ aboutSeller }) => {
+  console.log('aboutseller', aboutSeller);
+
   const {
-    sellerName = 'John Doe',
-    sellerStarRating = 0,
-    sellerReviewCount = 0,
+    sellername = 'John Doe',
+    sellerstarrating = 0,
+    sellerreviewcount = 0,
     sellerTotalItems = 0,
-    sellerCountry = 'somewhere',
-    sellerTotalSales = 0,
-    sellerJoinDate = '2020',
-    sellerPicture = '',
+    sellercountry = 'somewhere',
+    sellertotalsales = 0,
+    sellerjoindate = '2020',
+    sellerpicture = '',
   } = aboutSeller;
+
+  // const {
+  //   sellerName,
+  //   sellerStarRating,
+  //   sellerReviewCount,
+  //   sellerTotalItems,
+  //   sellerCountry,
+  //   sellerTotalSales,
+  //   sellerJoinDate,
+  //   sellerPicture,
+  // } = aboutSeller;
 
   const stars = (rating) => {
     switch (rating) {
@@ -137,20 +150,20 @@ const Seller = ({ aboutSeller }) => {
 
   return (
     <SellerCont>
-      <SellerPicture src={sellerPicture} alt="" />
+      <SellerPicture src={sellerpicture} alt="" />
       <SellerContainer>
         <SellerInfoTop>
-          <SellerName>{sellerName}</SellerName>
-          {stars(sellerStarRating)}
-          <SellerReviewCount>({sellerReviewCount})</SellerReviewCount>
+          <SellerName>{sellername}</SellerName>
+          {stars(sellerstarrating)}
+          <SellerReviewCount>({sellerreviewcount})</SellerReviewCount>
         </SellerInfoTop>
         <SellerInfoBottom>
-          <SellerCountry>{sellerCountry}</SellerCountry>
+          <SellerCountry>{sellercountry}</SellerCountry>
           <SellerTotalSales>
-            {sellerTotalSales} Sales
+            {sellertotalsales} Sales
           </SellerTotalSales>
           <SellerJoinDate>
-            On Etsy since {sellerJoinDate.slice(0, 4)}
+            On Etsy since {sellerjoindate}
           </SellerJoinDate>
         </SellerInfoBottom>
       </SellerContainer>
@@ -170,14 +183,14 @@ Seller.defaultProps = {
 Seller.propTypes = {
   // eslint-disable-next-line react/require-default-props
   aboutSeller: PropTypes.shape({
-    sellerName: PropTypes.string,
-    sellerStarRating: PropTypes.number,
-    sellerReviewCount: PropTypes.number,
+    sellername: PropTypes.string,
+    sellerstarrating: PropTypes.number,
+    sellerreviewcount: PropTypes.number,
     sellerTotalItems: PropTypes.number,
-    sellerCountry: PropTypes.string,
-    sellerTotalSales: PropTypes.number,
-    sellerPicture: PropTypes.string,
-    sellerJoinDate: PropTypes.string,
+    sellercountry: PropTypes.string,
+    sellertotalsales: PropTypes.number,
+    sellerpicture: PropTypes.string,
+    sellerjoindate: PropTypes.string,
   }),
 };
 
