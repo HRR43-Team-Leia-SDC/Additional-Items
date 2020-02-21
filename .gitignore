@@ -6,3 +6,9 @@ package-lock.json
 junit.xml
 public/bundle.js.br
 public/bundle.js.gz
+
+# CSV files
+*.csv
+
+# Cassandra import
+database/cassandra/import_etsy_additionalitems.err.20200217_102055

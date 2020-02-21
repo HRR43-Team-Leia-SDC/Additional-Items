@@ -1,7 +1,10 @@
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
-const db = require('../database');
-const { Item } = require('../database/schemas.js');
+// const db = require('../database');
+// const { Item } = require('../database/schemas.js');
+
+// getSellerItems from postgres
+const { getSellerItems } = require('../database/postgres/index.js');
 
 const app = express();
 
@@ -15,25 +18,42 @@ app.use('/', expressStaticGzip('./public', {
 
 app.use(express.urlencoded({ extended: true }));
 
-
 app.get('/additional/:id', (req, res) => {
-  console.log(`responding to GET for ${req.params.id}`);
+  const itemId = parseInt(req.params.id, 10);
 
-  // eslint-disable-next-line no-restricted-globals
   if (isNaN(Number(req.params.id))) {
     res.status(400).json({ error: 'Invalid input type' });
   } else {
-    // need to sanitize this at some point
-    db.getAllSellerItemsExceptCurrentItem(req.params.id)
-      .then((allItems) => {
-        res.status(200).json(allItems);
+    getSellerItems(itemId)
+      .then((items) => {
+        res.status(200).send(items);
       })
-      .catch(() => {
-        res.status(404).json({ error: 'That ID does not exist in the database' });
+      .catch((err) => {
+        res.status(400).send(err);
       });
   }
 });
 
+// @dev mongoDB CRUD
+// app.get('/additional/:id', (req, res) => {
+//   console.log(`responding to GET for ${req.params.id}`);
+
+//   // eslint-disable-next-line no-restricted-globals
+//   if (isNaN(Number(req.params.id))) {
+//     res.status(400).json({ error: 'Invalid input type' });
+//   } else {
+//     // need to sanitize this at some point
+//     db.getAllSellerItemsExceptCurrentItem(req.params.id)
+//       .then((allItems) => {
+//         res.status(200).json(allItems);
+//       })
+//       .catch(() => {
+//         res.status(404).json({ error: 'That ID does not exist in the database' });
+//       });
+//   }
+// });
+
+// @dev mongoDB CRUD
 app.post('/additional', (req, res) => {
   const newItem = new Item({
     sellerName: req.body.sellerName,
@@ -55,6 +75,7 @@ app.post('/additional', (req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
+// @dev mongoDB CRUD
 app.put('/additional/:id', (req, res) => {
   const { id } = req.params;
 
@@ -78,6 +99,7 @@ app.put('/additional/:id', (req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
+// @dev mongoDB CRUD
 app.delete('/additional/:id', (req, res) => {
   const { id } = req.params;
   Item.findByIdAndDelete(id)

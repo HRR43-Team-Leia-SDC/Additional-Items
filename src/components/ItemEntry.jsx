@@ -63,10 +63,10 @@ letter-spacing: normal;
 
 const itemEntry = ({ item }) => {
   const {
-    itemName = null,
-    itemPrice = null,
-    itemPicture = null,
-    itemFreeShipping = null,
+    itemname = null,
+    itemprice = null,
+    itempicture = null,
+    itemfreeshipping = null,
   } = item;
 
   const freeShippingOption = (shipping) => {
@@ -74,19 +74,19 @@ const itemEntry = ({ item }) => {
       case 'yes':
         return (
           <ItemPrice>
-            ${itemPrice} <FreeShippingBadge>FREE shipping</FreeShippingBadge>
+            ${itemprice} <FreeShippingBadge>FREE shipping</FreeShippingBadge>
           </ItemPrice>
         );
       case 'elgible':
         return (
           <ShippingAndAvailibility>
-            <ItemPrice>${itemPrice}</ItemPrice>
+            <ItemPrice>${itemprice}</ItemPrice>
             <FreeShippingElgible>Free shipping eligible</FreeShippingElgible>
           </ShippingAndAvailibility>
         );
       default:
         return (
-          <ItemPrice>${itemPrice}</ItemPrice>
+          <ItemPrice>${itemprice}</ItemPrice>
         );
     }
   };
@@ -94,19 +94,19 @@ const itemEntry = ({ item }) => {
 
   return (
     <ItemDiv>
-      <ItemImage src={itemPicture} alt="No Image Available" />
-      <ItemName>{itemName}</ItemName>
-      {freeShippingOption(itemFreeShipping)}
+      <ItemImage src={itempicture} alt="No Image Available" />
+      <ItemName>{itemname}</ItemName>
+      {freeShippingOption(itemfreeshipping)}
     </ItemDiv>
   );
 };
 
 itemEntry.propTypes = {
   item: PropTypes.shape({
-    itemName: PropTypes.string,
-    itemPrice: PropTypes.number,
-    itemPicture: PropTypes.string,
-    itemFreeShipping: PropTypes.string,
+    itemname: PropTypes.string,
+    itemprice: PropTypes.number,
+    itempicture: PropTypes.string,
+    itemfreeshipping: PropTypes.string,
   }),
 };
 
