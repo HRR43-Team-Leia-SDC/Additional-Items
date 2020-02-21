@@ -26,15 +26,12 @@ const getSellerItems = (itemId) => pool
       const filteredSellerItems = res.rows.filter((item) => (
         item.itemid !== Number(itemId)
       ));
-      // console.log(filteredSellerItems);
       return filteredSellerItems;
     })
     .catch((err) => {
       client.release();
       console.log(err.stack);
     }));
-
-// getSellerItems(16);
 
 
 module.exports = { getSellerItems };

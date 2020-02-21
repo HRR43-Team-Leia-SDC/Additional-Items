@@ -1,7 +1,7 @@
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
-const db = require('../database');
-const { Item } = require('../database/schemas.js');
+// const db = require('../database');
+// const { Item } = require('../database/schemas.js');
 
 // getSellerItems from postgres
 const { getSellerItems } = require('../database/postgres/index.js');
@@ -15,8 +15,6 @@ app.use('/', expressStaticGzip('./public', {
     res.setHeader('Cache-Control', 'public, max-age=31536000');
   },
 }));
-
-// app.use('/', express.static('./public'));
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -36,7 +34,7 @@ app.get('/additional/:id', (req, res) => {
   }
 });
 
-
+// @dev mongoDB CRUD
 // app.get('/additional/:id', (req, res) => {
 //   console.log(`responding to GET for ${req.params.id}`);
 
@@ -55,6 +53,7 @@ app.get('/additional/:id', (req, res) => {
 //   }
 // });
 
+// @dev mongoDB CRUD
 app.post('/additional', (req, res) => {
   const newItem = new Item({
     sellerName: req.body.sellerName,
@@ -76,6 +75,7 @@ app.post('/additional', (req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
+// @dev mongoDB CRUD
 app.put('/additional/:id', (req, res) => {
   const { id } = req.params;
 
@@ -99,6 +99,7 @@ app.put('/additional/:id', (req, res) => {
     .catch((err) => res.status(400).json({ Error: err }));
 });
 
+// @dev mongoDB CRUD
 app.delete('/additional/:id', (req, res) => {
   const { id } = req.params;
   Item.findByIdAndDelete(id)
