@@ -12,3 +12,7 @@ public/bundle.js.gz
 
 # Cassandra import
 database/cassandra/import_etsy_additionalitems.err.20200217_102055
+
+/newrelic.js
+/newrelic_agent.log
+

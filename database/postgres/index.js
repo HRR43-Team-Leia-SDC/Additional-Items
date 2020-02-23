@@ -1,6 +1,36 @@
-const { Pool } = require('pg');
+const { Client, Pool } = require('pg');
 
 // use environment variables https://node-postgres.com/features/connecting
+
+// const client = new Client({
+//   host: 'localhost',
+//   database: 'etsy',
+//   port: 5432,
+// });
+
+// client
+//   .connect()
+//   .then(() => console.log('Postgres client connected'))
+//   .catch((err) => console.error('connection error', err.stack));
+
+// const getSellerItems = (itemId) => {
+//   client.connect();
+//   const query = 'SELECT * FROM additionalitems WHERE sellerid IN (SELECT sellerid FROM additionalitems WHERE itemid=$1)';
+//   const value = [itemId];
+//   // console.log('itemid', value);
+//   client
+//     .query(query, value)
+//     .then((res) => {
+//       const filteredSellerItems = res.rows.filter((item) => (
+//         item.itemid !== Number(itemId)
+//       ));
+//       return filteredSellerItems;
+//     })
+//     .catch((err) => {
+//       console.log(err.stack);
+//     })
+//     .then(() => client.end());
+// };
 
 const pool = new Pool({
   // user: 'dbuser',

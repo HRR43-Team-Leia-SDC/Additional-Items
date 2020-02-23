@@ -1,0 +1,14 @@
+config:
+  target: 'http://localhost:3004'
+  phases:
+    - duration: 30
+      arrivalRate: 10
+    - duration: 300
+      arrivalRate: 5
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - get:
+        url: 'http://localhost:3004/additional/36256214'

@@ -105,8 +105,6 @@ const ViewAllItems = styled.button`
 `;
 
 const Seller = ({ aboutSeller }) => {
-  console.log('aboutseller', aboutSeller);
-
   const {
     sellername = 'John Doe',
     sellerstarrating = 0,
@@ -117,17 +115,6 @@ const Seller = ({ aboutSeller }) => {
     sellerjoindate = '2020',
     sellerpicture = '',
   } = aboutSeller;
-
-  // const {
-  //   sellerName,
-  //   sellerStarRating,
-  //   sellerReviewCount,
-  //   sellerTotalItems,
-  //   sellerCountry,
-  //   sellerTotalSales,
-  //   sellerJoinDate,
-  //   sellerPicture,
-  // } = aboutSeller;
 
   const stars = (rating) => {
     switch (rating) {
