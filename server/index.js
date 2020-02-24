@@ -1,7 +1,6 @@
+const nr = require('newrelic');
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
-// const db = require('../database');
-// const { Item } = require('../database/schemas.js');
 
 // getSellerItems from postgres
 const { getSellerItems } = require('../database/postgres/index.js');
@@ -33,6 +32,24 @@ app.get('/additional/:id', (req, res) => {
       });
   }
 });
+
+// app.post('/additional/sellerId/:id', (req, res) => {
+//   const sellerId = parseInt(req.params.id, 10);
+
+//   const { } = req.body;
+
+//   if (isNaN(Number(req.params.id))) {
+//     res.status(400).json({ error: 'Invalid input type' });
+//   } else {
+//     postSellerItem(sellerId)
+//       .then((result) => {
+//         res.status(200).send(result);
+//       })
+//       .catch((err) => {
+//         res.status(400).send(err);
+//       });
+//   }
+// });
 
 // @dev mongoDB CRUD
 // app.get('/additional/:id', (req, res) => {
