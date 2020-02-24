@@ -21,32 +21,17 @@ client.connect()
     return client.execute(query);
   })
   .then((result) => {
-    // const { traceId } = result.info;
-
     const { sellerid } = result.rows[0];
-    // console.log('result set', result);
-
-    // console.log('result', result.rows[0].sellerid);
-    // return client.metadata.getTrace(traceId);
     const query = `SELECT * FROM selleritems WHERE sellerid=${sellerid}`;
     return client.execute(query);
   })
   .then((allitems) => {
     const items = allitems.rows;
-    // console.log('allitems', items);
     console.log('timestamp', new Date() - t0);
   })
   .catch((err) => {
     console.error('there was an error', err);
     return client.shutdown().then(() => { throw err; });
   });
-
-// client.connect((err) => {
-//   if (err) {
-//     console.log(err);
-//   } else {
-//     console.log('Cassandra connected');
-//   }
-// });
 
 module.exports = client;

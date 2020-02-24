@@ -1,5 +1,4 @@
 const nr = require('newrelic');
-
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 
@@ -38,7 +37,6 @@ app.get('/additional/:id', (req, res) => {
 //   const sellerId = parseInt(req.params.id, 10);
 
 //   const { } = req.body;
-
 
 //   if (isNaN(Number(req.params.id))) {
 //     res.status(400).json({ error: 'Invalid input type' });

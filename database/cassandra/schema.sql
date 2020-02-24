@@ -1,6 +1,6 @@
--- CREATE KEYSPACE [IF NOT EXISTS] etsy_v02 WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 1};
+CREATE KEYSPACE [IF NOT EXISTS] etsy_v02 WITH REPLICATION = {'class': 'SimpleStrategy', 'replication_factor': 1};
 
--- USE etsy_v02;
+USE etsy_v02;
 
 DROP TABLE IF EXISTS additionalItems;
 
