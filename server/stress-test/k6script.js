@@ -33,33 +33,17 @@ const waitingTime = new Trend('waiting_time');
 export default function () {
   // random number
   const random = Math.floor(Math.random() * (36256214 - 1)) + 1;
-  const req1 = {
-    method: 'GET',
-    url: `http://localhost:3004/${random}`,
-  };
-  const req2 = {
-    method: 'GET',
-    url: `http://localhost:3004/additional/${random}`,
-  };
-  const responses = http.batch([req1, req2]);
+  const res = http.get(`http://localhost:3004/${random}`);
 
-  // const res = http.get(`http://localhost:3004/${random}`);
-  // const res2 = http.get(`http://localhost:3004/additional/${random}`);
-
-
-  const result1 = check(responses[0], {
-    'status was 200': (r) => r.status === 200,
-  });
-
-  const result2 = check(responses[1], {
+  const result = check(res, {
     'status was 200': (r) => r.status === 200,
   });
 
   // record check failures
-  // errorRate.add(!result1);
+  errorRate.add(!result);
 
   // record waiting time
-  // waitingTime.add(res.timings.waiting);
+  waitingTime.add(res.timings.waiting);
 
 
   // http.get('http://localhost:3004/additional/' + random);
