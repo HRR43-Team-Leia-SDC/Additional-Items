@@ -22,7 +22,7 @@ export const options = {
   // ramp down to 0 VUs for 30s
   stages: [
     { target: 100, duration: '60s' },
-    { target: 400, duration: '180s' },
+    { target: 200, duration: '180s' },
     { target: 0, duration: '30s' },
   ],
 };
