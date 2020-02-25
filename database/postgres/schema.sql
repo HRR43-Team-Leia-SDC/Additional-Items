@@ -1,8 +1,8 @@
--- DROP DATABASE IF EXISTS SDCadditionalItems;
+-- DROP DATABASE IF EXISTS etsy;
 
--- CREATE DATABASE SDCadditionalItems;
+-- CREATE DATABASE etsy;
 
--- \connect SDCadditionalItems;
+-- \connect etsy;
 
 DROP TABLE IF EXISTS additionalItems;
 
