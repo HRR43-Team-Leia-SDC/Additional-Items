@@ -3,7 +3,7 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const BrotliPlugin = require('brotli-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: './src/components/index.jsx',
   output: {
     path: path.resolve(__dirname, 'public'),
