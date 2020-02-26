@@ -1,9 +1,10 @@
+require('dotenv').config();
 const { Client, Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'localhost',
-  database: 'etsy',
-  port: 5432,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  port: process.env.DB_PORT,
 });
 
 pool.on('error', (err, client) => {

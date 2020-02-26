@@ -16,3 +16,9 @@ database/cassandra/import_etsy_additionalitems.err.20200217_102055
 /newrelic.js
 /newrelic_agent.log
 
+# MongoDB files
+jest-mongodb-config.js
+
+# package.json with Mongo packages
+oldpackage.json
+
