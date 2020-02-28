@@ -4,6 +4,7 @@ const { Client, Pool } = require('pg');
 const pool = new Pool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   port: process.env.DB_PORT,
 });
@@ -19,6 +20,7 @@ const getSellerItems = (itemId) => pool
   .then((client) => client
     .query('SELECT * FROM additionalitems WHERE sellerid IN (SELECT sellerid FROM additionalitems WHERE itemid=$1)', [itemId])
     .then((res) => {
+      console.log('res', res.rows[0]);
       client.release();
 
       const filteredSellerItems = res.rows.filter((item) => (
