@@ -19,10 +19,6 @@ app.use('/', expressStaticGzip('./public', {
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/loaderio-bae8e0e18249333b6784a07c5d27c218/', (req, res) => {
- res.send('loaderio-bae8e0e18249333b6784a07c5d27c218');
-});
-
 app.get('/additional/:id', (req, res) => {
   const itemId = parseInt(req.params.id, 10);
   console.log('itemid', itemId);
