@@ -1,11 +1,13 @@
 const nr = require('newrelic');
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
+const cors = require('cors');
 
 // getSellerItems from postgres
 const { getSellerItems } = require('../database/postgres/index.js');
 
 const app = express();
+app.use(cors());
 
 app.use('/', expressStaticGzip('./public', {
   enableBrotli: true,
