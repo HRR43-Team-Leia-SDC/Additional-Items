@@ -19,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/additional/:id', (req, res) => {
   const itemId = parseInt(req.params.id, 10);
+  console.log('itemid', itemId);
 
   if (isNaN(Number(req.params.id))) {
     res.status(400).json({ error: 'Invalid input type' });
