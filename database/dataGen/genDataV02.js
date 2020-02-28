@@ -3,7 +3,7 @@ const faker = require('faker');
 const fs = require('fs');
 
 const generateItemData = () => {
-  const wsItem = fs.createWriteStream('./database/csv/items.csv');
+  const wsItem = fs.createWriteStream('/home/ubuntu/Additional-Items/database/csv/items.csv');
 
   // eslint-disable-next-line quotes
   wsItem.write(`itemId,itemName,itemPrice,itemPicture,itemFreeShipping,sellerId,sellerPicture,sellerName,sellerCountry,sellerTotalSales,sellerJoinDate,sellerStarRating,sellerReviewCount\n`);
