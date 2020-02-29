@@ -20,7 +20,6 @@ const getSellerItems = (itemId) => pool
   .then((client) => client
     .query('SELECT * FROM additionalitems WHERE sellerid IN (SELECT sellerid FROM additionalitems WHERE itemid=$1)', [itemId])
     .then((res) => {
-      console.log('res', res.rows[0]);
       client.release();
 
       const filteredSellerItems = res.rows.filter((item) => (
